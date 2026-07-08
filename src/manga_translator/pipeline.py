@@ -11,6 +11,7 @@ from manga_translator.ocr.base import BaseOCREngine
 from manga_translator.ocr.easyocr_engine import EasyOCREngine
 from manga_translator.translation.base import BaseTranslator
 from manga_translator.translation.claude_translator import ClaudeTranslator
+from manga_translator.translation.deepseek_translator import DeepSeekTranslator
 from manga_translator.translation.openai_translator import OpenAITranslator
 from manga_translator.inpainting.base import BaseInpainter
 from manga_translator.inpainting.simple_inpaint import SimpleInpainter
@@ -71,6 +72,8 @@ class MangaTranslator:
             return OpenAITranslator(model=model)
         elif engine == "claude":
             return ClaudeTranslator(model=model)
+        elif engine == "deepseek":
+            return DeepSeekTranslator(model=model)
         raise ValueError(f"不支持的翻译引擎: {engine}")
 
     def _create_inpainter(self) -> BaseInpainter:

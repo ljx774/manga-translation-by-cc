@@ -9,10 +9,10 @@ ocr:
 
 # 翻译设置
 translation:
-  engine: openai           # openai 或 claude
+  engine: deepseek         # deepseek, openai 或 claude
   source_lang: ja          # 源语言
   target_lang: zh          # 目标语言
-  model: gpt-4o            # 模型名称 (openai: gpt-4o, gpt-4-turbo 等; claude: claude-opus-4-8 等)
+  model: deepseek-chat     # 模型名称 (deepseek: deepseek-chat; openai: gpt-4o; claude: claude-sonnet-5)
   batch_size: 10           # 每次翻译的文本块数量
 
 # 擦除设置

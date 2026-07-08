@@ -55,7 +55,7 @@ def main():
 @click.option(
     "--engine",
     default=None,
-    help="翻译引擎 (openai 或 claude)",
+    help="翻译引擎 (deepseek, openai 或 claude)",
 )
 @click.option(
     "--model",

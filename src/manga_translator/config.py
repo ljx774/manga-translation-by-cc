@@ -51,6 +51,7 @@ class Config:
             "TRANSLATION_MODEL": "translation.model",
             "OPENAI_API_KEY": "translation.openai_api_key",
             "ANTHROPIC_API_KEY": "translation.anthropic_api_key",
+            "DEEPSEEK_API_KEY": "translation.deepseek_api_key",
         }
         for env_var, config_path in env_mappings.items():
             value = os.environ.get(env_var)

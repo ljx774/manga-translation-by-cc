@@ -136,7 +136,7 @@ class TestConfig:
         from manga_translator.config import Config
         config = Config()
         assert config.ocr_config.get("engine") == "easyocr"
-        assert config.translation_config.get("engine") == "openai"
+        assert config.translation_config.get("engine") == "deepseek"
 
     def test_config_get(self):
         from manga_translator.config import Config
