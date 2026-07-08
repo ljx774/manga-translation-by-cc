@@ -1,0 +1,1 @@
+from manga_translator.types import TextBlock, TranslatedBlock

@@ -1,0 +1,36 @@
+# Manga Translator 默认配置
+
+# OCR 设置
+ocr:
+  engine: easyocr          # 当前仅支持 easyocr
+  source_lang: ja          # 源语言: ja, zh, en, ko 等
+  gpu: true                # 是否使用 GPU
+  min_confidence: 0.5      # 最低置信度阈值
+
+# 翻译设置
+translation:
+  engine: openai           # openai 或 claude
+  source_lang: ja          # 源语言
+  target_lang: zh          # 目标语言
+  model: gpt-4o            # 模型名称 (openai: gpt-4o, gpt-4-turbo 等; claude: claude-opus-4-8 等)
+  batch_size: 10           # 每次翻译的文本块数量
+
+# 擦除设置
+inpainting:
+  engine: simple           # 当前仅支持 simple
+  padding: 4               # 擦除区域扩展像素
+  blur_radius: 3           # 边缘模糊半径
+
+# 渲染设置
+rendering:
+  font_path: null          # 字体路径，null 则自动查找系统 CJK 字体
+  font_size: null          # 字体大小，null 则自动计算
+  font_color: [0, 0, 0]    # 字体颜色 RGB
+  max_font_size: 32
+  min_font_size: 10
+  text_padding: 6          # 文字与边界的内边距
+
+# 输出设置
+output:
+  suffix: "_translated"    # 输出文件后缀
+  format: null             # 输出格式，null 则保持原格式
