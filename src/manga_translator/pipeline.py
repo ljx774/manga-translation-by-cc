@@ -67,13 +67,14 @@ class MangaTranslator:
         cfg = self.config.translation_config
         engine = cfg.get("engine", "openai")
         model = cfg.get("model", "gpt-4o")
+        api_key = cfg.get("api_key") or None  # 空字符串视为 None
 
         if engine == "openai":
-            return OpenAITranslator(model=model)
+            return OpenAITranslator(model=model, api_key=api_key)
         elif engine == "claude":
-            return ClaudeTranslator(model=model)
+            return ClaudeTranslator(model=model, api_key=api_key)
         elif engine == "deepseek":
-            return DeepSeekTranslator(model=model)
+            return DeepSeekTranslator(model=model, api_key=api_key)
         raise ValueError(f"不支持的翻译引擎: {engine}")
 
     def _create_inpainter(self) -> BaseInpainter:

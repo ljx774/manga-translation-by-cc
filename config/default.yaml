@@ -13,6 +13,7 @@ translation:
   source_lang: ja          # 源语言
   target_lang: zh          # 目标语言
   model: deepseek-chat     # 模型名称 (deepseek: deepseek-chat; openai: gpt-4o; claude: claude-sonnet-5)
+  api_key: ""              # API Key，留空则从环境变量读取 (DEEPSEEK_API_KEY / OPENAI_API_KEY / ANTHROPIC_API_KEY)
   batch_size: 10           # 每次翻译的文本块数量
 
 # 擦除设置
