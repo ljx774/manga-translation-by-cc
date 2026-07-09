@@ -10,19 +10,28 @@ import yaml
 class Config:
     """全局配置管理器
 
-    加载顺序：默认配置 → 用户配置文件 → 环境变量覆盖
+    加载顺序：默认配置 → local.yaml → 用户指定配置 → 环境变量覆盖
     """
 
     def __init__(self, config_path: str | Path | None = None):
         self._data: dict[str, Any] = {}
 
+        config_dir = Path(__file__).parent.parent.parent / "config"
+
         # 1. 加载默认配置
-        default_path = Path(__file__).parent.parent.parent / "config" / "default.yaml"
+        default_path = config_dir / "default.yaml"
         if default_path.exists():
             with open(default_path, "r", encoding="utf-8") as f:
                 self._data = yaml.safe_load(f) or {}
 
-        # 2. 加载用户指定配置
+        # 2. 自动加载 local.yaml（如果存在）
+        local_path = config_dir / "local.yaml"
+        if local_path.exists():
+            with open(local_path, "r", encoding="utf-8") as f:
+                local_config = yaml.safe_load(f) or {}
+                self._deep_update(self._data, local_config)
+
+        # 3. 加载用户指定配置（覆盖 local.yaml）
         if config_path:
             config_path = Path(config_path)
             if config_path.exists():
@@ -30,7 +39,7 @@ class Config:
                     user_config = yaml.safe_load(f) or {}
                     self._deep_update(self._data, user_config)
 
-        # 3. 环境变量覆盖
+        # 4. 环境变量覆盖
         self._apply_env_overrides()
 
     def _deep_update(self, base: dict, override: dict) -> None:
